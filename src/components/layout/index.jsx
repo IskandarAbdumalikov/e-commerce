@@ -10,7 +10,7 @@ const Layouts = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 };

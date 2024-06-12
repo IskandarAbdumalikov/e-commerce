@@ -3,59 +3,57 @@ import "./header.scss";
 import { CiSearch, CiHeart, CiShoppingCart } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import { LuBox } from "react-icons/lu";
-import avatar from "../../../assets/avatar.svg";
+import avatar from "../../../assets/images/avatar.svg";
+import x from "../../../assets/icons/x.svg";
+import { Link, NavLink } from "react-router-dom";
+import SearchModule from "./searchModule/SearchModule";
+import Dropdown from "./dropdown/Dropdown";
 
 const Header = () => {
   let [showCategoryList, setShowCategoryList] = useState(false);
   return (
     <header className="header">
       <nav className="header__nav container">
-        <h1 className="header__nav__logo">
+        <Link to={"/"} className="header__nav__logo">
           <img
-            width={70}
             src="https://freevector-images.s3.amazonaws.com/uploads/vector/preview/36682/36682.png"
             alt=""
           />
-        </h1>
-        <div className="header__nav__category__selector">
-          <button
-            onMouseEnter={() => setShowCategoryList(true)}
-            onMouseLeave={() => setShowCategoryList(false)}
-          >
-            <FaBars />
-            category
-          </button>
-          {showCategoryList ? (
-            <div className="categories__list">Bu yerga categorylar chiqadi</div>
-          ) : (
-            <></>
-          )}
+        </Link>
+        <div className="show__form">
+          <SearchModule />
         </div>
-        <form action="" className="header__nav__search__form">
-          <input placeholder="Search product" type="text" />
-          <button>
-            <CiSearch />
+
+        <div className="header__nav__left">
+          <button
+            onClick={() => setShowCategoryList((p) => !p)}
+            className="category__selector-btn"
+          >
+            {showCategoryList ? <img src={x} /> : <FaBars />}
+            <h3>Category</h3>
           </button>
-        </form>
-        <ul className="header__nav__list">
-          <div className="likes">
-            <CiHeart />
-            <h3>LIKES</h3>
+          <SearchModule />
+          <div className="header__nav__left__list">
+            <NavLink className="header__nav__left__list__item">
+              <CiHeart />
+              <h3>Likes</h3>
+            </NavLink>
+            <NavLink className="header__nav__left__list__item">
+              <LuBox />
+              <h3>products</h3>
+            </NavLink>
+            <NavLink className="header__nav__left__list__item">
+              <CiShoppingCart />
+              <h3>Cart</h3>
+            </NavLink>
           </div>
-          <div className="products">
-            <LuBox />
-            <h3>PRODUCTS</h3>
+          <div className="header__nav__left__profile">
+            <img src={avatar} alt="" />
+            <h3>Iskandar</h3>
           </div>
-          <div className="box">
-            <CiShoppingCart />
-            <h3>CART</h3>
-          </div>
-        </ul>
-        <div className="header__nav__avatar">
-          <img src={avatar} alt="" />
-          <h1>ISKANDAR</h1>
         </div>
       </nav>
+      {showCategoryList ? <Dropdown /> : <></>}
     </header>
   );
 };

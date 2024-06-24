@@ -22,7 +22,6 @@ import SingleModule from "../../components/singleModule/SingleModule";
 const Products = ({ sliceFrom, sliceTo, title }) => {
   const { data, isLoading } = useGetAllProductsQuery();
   const [handleDelete, { data: deletedData }] = useDeleteProductMutation();
-  const [showModule, setShowModule] = useState(false);
   console.log(data);
 
   const getRating = (rating) => {

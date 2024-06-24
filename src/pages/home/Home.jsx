@@ -6,7 +6,9 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <Products/>
+      <Products sliceFrom={0} sliceTo={4} title={"Акции"} />
+      <Products sliceFrom={4} sliceTo={8} title={"Новинки"} />
+      <Products sliceFrom={8} sliceTo={12} title={"Покупали раньше"} />
     </div>
   );
 };

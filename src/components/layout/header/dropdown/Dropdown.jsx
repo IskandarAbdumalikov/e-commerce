@@ -1,5 +1,6 @@
 import React from "react";
 import { useGetCategoriesQuery } from "../../../../features/categoryApi";
+import { Link } from "react-router-dom";
 
 const Dropdown = () => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
@@ -18,10 +19,14 @@ const Dropdown = () => {
         <h2>Loading...</h2>
       ) : (
         categories?.map((category) => (
-          <div key={category.id} className="dropdown__card">
+          <Link
+            to={`categories/${category.id}`}
+            key={category.id}
+            className="dropdown__card"
+          >
             <img src={category.img} alt="" />
             <h2>{category.name}</h2>
-          </div>
+          </Link>
         ))
       )}
     </div>

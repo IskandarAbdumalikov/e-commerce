@@ -21,3 +21,13 @@
     background: url('../../assets/images/heroBack.svg') no-repeat center/cover;
 
 }
+
+@media (max-width:720px) {
+    .hero{
+        flex-direction: column;
+        height: auto;
+    }
+    .hero__right,.hero__left{
+       flex: 1;
+    }
+}

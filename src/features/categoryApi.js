@@ -11,7 +11,11 @@ export const categoriesApi = createApi({
       query: () => "",
       providesTags: ["Category"],
     }),
+    getSingleCategory: builder.query({
+      query: (id) => `/${id}`,
+      providesTags: ["Category"],
+    }),
   }),
 });
 
-export const { useGetCategoriesQuery } = categoriesApi;
+export const { useGetCategoriesQuery,useGetSingleCategoryQuery } = categoriesApi;

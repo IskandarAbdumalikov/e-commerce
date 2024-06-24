@@ -8,9 +8,13 @@ import x from "../../../assets/icons/x.svg";
 import { Link, NavLink } from "react-router-dom";
 import SearchModule from "./searchModule/SearchModule";
 import Dropdown from "./dropdown/Dropdown";
+import { useGetParamsProductsQuery } from "../../../features/apiSlice";
 
 const Header = () => {
   let [showCategoryList, setShowCategoryList] = useState(false);
+  const [searchValue, setSearchValue] = useState(``);
+  const { data } = useGetParamsProductsQuery({ title: searchValue });
+
   return (
     <header className="header">
       <nav className="header__nav container">
@@ -21,7 +25,15 @@ const Header = () => {
           />
         </Link>
         <div className="show__form">
-          <SearchModule />
+          <form className="header__nav__left__show__form" action="">
+            <input
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search product"
+              type="text"
+              value={searchValue}
+            />
+            <CiSearch />
+          </form>
         </div>
 
         <div className="header__nav__left">
@@ -29,20 +41,32 @@ const Header = () => {
             onClick={() => setShowCategoryList((p) => !p)}
             className="category__selector-btn"
           >
-            {showCategoryList ? <img src={x} /> : <FaBars />}
+            {showCategoryList ? (
+              <img className="x-image" src={x} />
+            ) : (
+              <FaBars />
+            )}
             <h3>Category</h3>
           </button>
-          <SearchModule />
+          <form className="header__nav__left__form" action="">
+            <input
+              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
+              placeholder="Search product"
+              type="text"
+            />
+            <CiSearch />
+          </form>
           <div className="header__nav__left__list">
-            <NavLink className="header__nav__left__list__item">
+            <NavLink to={"likes"} className="header__nav__left__list__item">
               <CiHeart />
               <h3>Likes</h3>
             </NavLink>
-            <NavLink className="header__nav__left__list__item">
+            <NavLink to={"/products"} className="header__nav__left__list__item">
               <LuBox />
               <h3>products</h3>
             </NavLink>
-            <NavLink className="header__nav__left__list__item">
+            <NavLink to={"/cart"} className="header__nav__left__list__item">
               <CiShoppingCart />
               <h3>Cart</h3>
             </NavLink>
@@ -53,7 +77,12 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      {showCategoryList ? <Dropdown /> : <></>}
+      {showCategoryList && searchValue === "" ? <Dropdown /> : <></>}
+      {searchValue ? (
+        <SearchModule data={data} setSearchValue={setSearchValue} />
+      ) : (
+        <></>
+      )}
     </header>
   );
 };

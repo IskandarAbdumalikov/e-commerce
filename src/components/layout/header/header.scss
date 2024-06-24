@@ -6,6 +6,7 @@
   background: white;
   box-shadow: 0px 0px 10px gray;
   height: 100px;
+  max-width: 100%;
   z-index: 9999;
   &__nav {
     display: flex;
@@ -28,7 +29,7 @@
       align-items: center;
       justify-content: space-between;
 
-      &__form {
+      &__form{
         display: flex;
         align-items: center;
         border: 1px solid #70c05b;
@@ -106,6 +107,8 @@
   top: 101px;
   left: 0;
   width: 100%;
+  max-width: 100%;
+
   background: white;
   padding: 50px;
   box-shadow: 0px 6px 6px rgba(128, 128, 128, 0.487);
@@ -119,6 +122,7 @@
     transition: 0.3s;
     border-radius: 5px;
     padding: 5px;
+    cursor: pointer;
     img {
       width: 50px;
       height: 50px;
@@ -128,6 +132,33 @@
   }
   .dropdown__card:hover {
     background: #0002;
+  }
+}
+
+@media (max-width: 770px) {
+  .dropdown__module {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .dropdown__module {
+    grid-template-columns: 1fr;
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 300px) {
+  .dropdown__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dropdown__module {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
+    gap: 30px;
   }
 }
 
@@ -153,6 +184,25 @@
   .show__form {
     display: flex !important;
   }
+  .header__nav__left__show__form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #70c05b;
+    justify-content: space-between;
+    height: 40px;
+    border-radius: 5px;
+    input {
+      outline: none;
+      border: none;
+      font-size: 18px;
+      padding: 0px 10px;
+    }
+    svg {
+      font-size: 25px;
+      cursor: pointer;
+      padding-right: 5px;
+    }
+  }
   .header__nav__left {
     position: fixed;
     bottom: 0;
@@ -160,6 +210,7 @@
     right: 0;
     padding: 10px 16px;
     font-size: 15px;
+    background: white;
     &__form {
       display: none;
     }
@@ -182,12 +233,36 @@
   }
 }
 
+@media (max-width: 400px){
+    .header__nav{
+      flex-direction: column;
+      height: auto;
+    }
+    .header{
+      height: auto;
+      padding-bottom: 20px;
+    }
+    .header__nav__logo{
+      width: 100px;
+    }
+    .show__form{
+      flex: 1;
+    }
+    
+}
+
 @media (max-width: 390px) {
   .header__nav__left__list {
     &__item {
       h3 {
         display: none;
       }
+    }
+    .category__selector-btn {
+      color: black;
+    }
+    .x-image {
+      color: black !important;
     }
   }
   .header__nav__left__profile,

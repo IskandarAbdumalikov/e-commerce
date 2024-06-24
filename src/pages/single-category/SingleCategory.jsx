@@ -6,9 +6,8 @@ import { useGetAllCategoryProductsQuery } from "../../features/apiSlice";
 const SingleCategory = () => {
   let { categoryId } = useParams();
   let { data } = useGetSingleCategoryQuery(categoryId);
-  let { productsData } = useGetAllCategoryProductsQuery(_, categoryId);
-  console.log(productsData);
-  return <div>SingleCategory</div>;
+  console.log(categoryId);
+  return <div style={{paddingTop:"100px"}} className="container"><img style={{borderRadius:"10px"}} width={500} src={data?.img} alt="" /> <h2 style={{marginTop:"40px"}}>{data?.name}</h2></div>;
 };
 
 export default SingleCategory;

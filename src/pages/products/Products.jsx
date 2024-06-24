@@ -17,7 +17,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
-import SingleModule from "../../components/singleModule/SingleModule";
 
 const Products = ({ sliceFrom, sliceTo, title }) => {
   const { data, isLoading } = useGetAllProductsQuery();
@@ -114,8 +113,7 @@ const Products = ({ sliceFrom, sliceTo, title }) => {
                 <div className="products__card__info">
                   <h3>${product.price}</h3>
                   <h2
-                    style={{ cursor: "pointer" }}
-                    onClick={() => setShowModule(true)}
+                    
                   >
                     {product.title}
                   </h2>
@@ -129,7 +127,6 @@ const Products = ({ sliceFrom, sliceTo, title }) => {
           </div>
         </SwiperSlide>
       </Swiper>
-      {showModule ? <SingleModule setShowModule={setShowModule} /> : <></>}
     </div>
   );
 };
